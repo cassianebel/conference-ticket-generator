@@ -1,0 +1,185 @@
+@use "sass:map";
+
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+
+$transparent: hsla(0 0% 100% / 0.1);
+$white: hsl(0, 0%, 100%);
+$neutral-300: hsl(252, 6%, 83%);
+$neutral-500: hsl(245, 15%, 58%);
+$neutral-700: hsl(245, 19%, 35%);
+$neutral-900: hsl(248, 70%, 10%);
+
+$orange-500: hsl(7, 88%, 67%);
+$orange-700: hsl(7, 71%, 60%);
+
+$gradient: hsl(7, 86%, 67%) to hsl(0, 0%, 100%);
+
+$breakpoints: (
+  "sm": 640px,
+  "md": 768px,
+  "lg": 1024px,
+);
+
+@mixin respond($breakpoint) {
+  $size: map.get($breakpoints, $breakpoint);
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inconsolata", Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 100vh;
+  padding: 1rem;
+  color: $white;
+  background-image: url("../assets/images/pattern-circle.svg"),
+    url("../assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg"),
+    url("../assets/images/pattern-squiggly-line-top.svg"),
+    url("../assets/images/pattern-lines.svg"),
+    url("../assets/images/background-mobile.png");
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 100px, 70%, 100px, cover, cover;
+  background-position: top 70% right -50px, bottom left, top 1rem right,
+    top center, center center;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+}
+
+header {
+  padding: 1rem;
+  img {
+    max-width: 10rem;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: center;
+  margin: 2rem;
+  &.help {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    text-align: left;
+    margin: 0 0 1.5rem 0;
+    color: $neutral-300;
+  }
+}
+
+label {
+  display: block;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+input {
+  font-family: "Inconsolata", Verdana, Geneva, Tahoma, sans-serif;
+  width: 100%;
+  display: block;
+  border: 1px solid $neutral-500;
+  border-radius: 0.75rem;
+  background-color: $transparent;
+  padding: 1rem;
+  margin: 0 0 1.5rem 0;
+  font-size: 1.1rem;
+  color: $white;
+  &::placeholder {
+    color: $neutral-300;
+    font-weight: 300;
+  }
+}
+
+button {
+  font-family: "Inconsolata", Verdana, Geneva, Tahoma, sans-serif;
+  width: 100%;
+  padding: 1rem;
+  background-color: $orange-500;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: unset;
+  border-radius: 0.75rem;
+}
+
+form {
+  margin-bottom: 4rem;
+}
+
+footer {
+  margin-top: auto;
+}
+
+#confirmation {
+  display: none;
+}
+
+#dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px dashed $neutral-500;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+  background-color: $transparent;
+  color: $neutral-300;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease,
+    box-shadow 0.15s ease;
+  outline: none;
+  user-select: none;
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+  }
+  &.dragover {
+    border-color: #3b82f6;
+    background: #f0f6ff;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+#upload-icon {
+  padding: 0.75rem;
+  border: 1px solid $neutral-500;
+  border-radius: 1rem;
+  background-color: $transparent;
+}
+
+#file-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

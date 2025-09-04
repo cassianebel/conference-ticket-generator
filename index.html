@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Conference ticket generator</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(7, 88%, 67%);
+      }
+    </style>
+    <link rel="stylesheet" href="./scss/styles.css" />
+  </head>
+  <body>
+    <header>
+      <img src="./assets/images/logo-full.svg" alt="Coding Conf logo" />
+    </header>
+
+    <main>
+      <section id="signup">
+        <h1>Your Journey to Coding Conf 2025 Starts Here!</h1>
+        <p>Secure your spot at next year's biggest coding conference.</p>
+        <form id="form" novalidate>
+          <label for="avatar">Upload Avatar</label>
+          <input
+            id="avatar"
+            name="avatar"
+            type="file"
+            class="visually-hidden"
+            aria-hidden="true"
+            tabindex="-1"
+          />
+          <div
+            id="dropzone"
+            role="button"
+            tabindex="0"
+            aria-controls="avatar"
+            aria-label="Drag and drop or click to upload"
+          >
+            <img
+              src="./assets/images/icon-upload.svg"
+              alt="upload icon"
+              id="upload-icon"
+            />
+            <p>Drag and drop or click to upload</p>
+          </div>
+
+          <ul
+            id="file-list"
+            aria-live="polite"
+            aria-relevant="additions removals"
+          ></ul>
+          <p class="help">
+            <img src="./assets/images/icon-info.svg" alt="info icon" />Upload
+            your photo (JPG or PNG, max size: 500KB).
+          </p>
+          <label for="name">Full Name</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="example@email.com"
+          />
+          <label for="username">GitHub Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="@yourusername"
+          />
+          <button type="submit">Generate My Ticket</button>
+        </form>
+      </section>
+
+      <section id="confirmation">
+        <h1>Congrats, <span id="full-name"></span>! Your ticket is ready.</h1>
+        <p>
+          We've emailed your ticket to <span id="email-address"></span> and will
+          send updates in the run up to the event.
+        </p>
+
+        <div id="ticket">
+          <p>Jan 31, 2025 / Austin, TX</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a
+        >. Coded by <a href="https://github.com/cassianebel">Cassia Nebel</a>.
+      </div>
+    </footer>
+  </body>
+</html>
