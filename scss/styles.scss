@@ -31,6 +31,10 @@ $breakpoints: (
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  &:focus {
+    outline-offset: 4px;
+    outline-color: $white;
+  }
 }
 
 body {
@@ -49,27 +53,56 @@ body {
     url("../assets/images/pattern-lines.svg"),
     url("../assets/images/background-mobile.png");
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-size: 100px, 70%, 100px, cover, cover;
+  background-size: 20%, 70%, 25%, cover, cover;
   background-position: top 70% right -50px, bottom left, top 1rem right,
     top center, center center;
-  background-attachment: fixed, fixed, fixed, fixed, fixed;
+  background-attachment: fixed, local, fixed, fixed, fixed;
+  @include respond("md") {
+    background-image: url("../assets/images/pattern-circle.svg"),
+      url("../assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg"),
+      url("../assets/images/pattern-squiggly-line-top.svg"),
+      url("../assets/images/pattern-lines.svg"),
+      url("../assets/images/background-tablet.png");
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: 30%, 45%, 30%, cover, cover;
+    background-position: top 85% right -120px, bottom left, top 4rem right,
+      top center, center center;
+    background-attachment: fixed, local, fixed, fixed, fixed;
+  }
+  @include respond("lg") {
+    background-image: url("../assets/images/pattern-circle.svg"),
+      url("../assets/images/pattern-squiggly-line-bottom-desktop.svg"),
+      url("../assets/images/pattern-squiggly-line-top.svg"),
+      url("../assets/images/pattern-lines.svg"),
+      url("../assets/images/background-desktop.png");
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: 230px, 45%, 400px, cover, cover;
+    background-position: top 80% right 22%, bottom left, top 4rem right,
+      top center, center center;
+    background-attachment: fixed, local, fixed, fixed, fixed;
+  }
 }
 
 header {
   padding: 1rem;
   img {
     max-width: 10rem;
+    @include respond("md") {
+      max-width: 100%;
+    }
   }
 }
 
 h1 {
   text-align: center;
-  font-size: 2rem;
-  margin: 1rem;
+  font-size: clamp(2rem, 7vw, 4rem);
+  margin: 1rem auto;
+  padding: 0 2rem;
+  max-width: 60rem;
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
   font-weight: 300;
   line-height: 1.2;
   text-align: center;
@@ -83,12 +116,15 @@ p {
     margin: 0 0 1.5rem 0;
     color: $neutral-300;
   }
+  &.error {
+    color: $orange-500;
+  }
 }
 
 label {
   display: block;
   font-size: 1.3rem;
-  margin: 0.5rem 0;
+  margin: 1.5rem 0 0.5rem 0;
 }
 
 input {
@@ -99,12 +135,15 @@ input {
   border-radius: 0.75rem;
   background-color: $transparent;
   padding: 1rem;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.5rem 0;
   font-size: 1.1rem;
   color: $white;
   &::placeholder {
     color: $neutral-300;
     font-weight: 300;
+  }
+  &.error {
+    border: 1px solid $orange-500;
   }
 }
 
@@ -117,10 +156,18 @@ button {
   font-weight: 700;
   border: unset;
   border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $orange-700;
+  }
 }
 
 form {
-  margin-bottom: 4rem;
+  margin: 0 auto 4rem auto;
+  max-width: 32rem;
 }
 
 footer {
@@ -150,7 +197,7 @@ footer {
   outline: none;
   user-select: none;
   &:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+    outline: 2px solid $white;
   }
   &.dragover {
     border-color: #3b82f6;
